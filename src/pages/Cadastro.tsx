@@ -1,5 +1,10 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { cadastrarUsuario } from "../api/BaseAPI";
+import { AxiosError } from "axios";
+import { useMutation } from "@tanstack/react-query";
+import InputField from "../components/InputField";
+
 
 
 function Cadastro() {
@@ -9,6 +14,21 @@ function Cadastro() {
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
 
+    const navigate = useNavigate();
+
+    const mutation = useMutation ({
+        mutationFn: () => cadastrarUsuario({nome, cpf, email, senha, confirmarSenha}),
+        onSuccess: () => {
+            alert("Cadastro realizado com sucesso!");
+            navigate("/login");
+        },
+        onError: (error: AxiosError) => {
+            const data = error.response?.data as { message?: string };
+            const mensagem = data?.message || "Erro ao cadastrar usuário.";
+            alert(mensagem);
+        },
+    });
+
     const enviar = (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -16,7 +36,7 @@ function Cadastro() {
             alert("Senhas não coincidem!");
             return;
         }
-
+        mutation.mutate();
     }
 
     return (
@@ -27,68 +47,15 @@ function Cadastro() {
                 <form onSubmit={enviar} className="p-10 rounded-2xl w-full max-w-md">
                     <div className="w-full h-20 bg-cover bg-center bg-[url('/src/assets/logo-img.jpeg')] mb-8"></div>
 
-                    <div className="mb-4">
-                        <label htmlFor="nome" className="block mb-2 text-sm font-medium">Nome:</label>
-                        <input type="text" 
-                            id="nome" 
-                            className="w-full px-4 py-2 border rounded-t-md border-b-2 outline-1"
-                            placeholder="Ex: Bianca Santana" 
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
-                            required  />
-                    </div>
+                    <InputField label="Nome" type="text" id="nome" placeholder="Ex: Bianca Santana" value={nome} onChange={(e) => setNome(e.target.value)} required />
 
-                    <div className="mb-6">
-                        <label htmlFor="cpf" className="block mb-2 text-sm font-medium">CPF:</label>
-                        <input 
-                            type="text" 
-                            id="cpf" 
-                            className="w-full px-4 py-2 border rounded-t-md border-b-2 outline-1"
-                            placeholder="Ex: 123.456.789.01" 
-                            value={cpf}
-                            onChange={(e) => setCpf(e.target.value)}
-                            required 
-                        />
-                    </div>
+                    <InputField label="CPF" type="text" id="cpf" placeholder="Ex: 123.456.789.01" value={cpf} onChange={(e) => setCpf(e.target.value)} required />
 
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium">E-mail</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            className="w-full px-4 py-2 border rounded-t-md border-b-2 outline-1"
-                            placeholder="Ex: professor@gmail.com" 
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required 
-                        />
-                    </div>
+                    <InputField label="E-mail" type="email" id="email" placeholder="Ex: professor@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-                    <div className="mb-4">
-                        <label htmlFor="senha" className="block mb-2 text-sm font-medium">Senha</label>
-                        <input 
-                            type="password" 
-                            id="senha" 
-                            className="w-full px-4 py-2 border rounded-t-md border-b-2 outline-1"
-                            placeholder="Crie uma senha" 
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                            required 
-                        />
-                    </div>
+                    <InputField label="Senha" type="password" id="senha" placeholder="Crie uma senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
 
-                    <div className="mb-6">
-                        <label htmlFor="confirmarSenha" className="block mb-2 text-sm font-medium">Confirmar Senha</label>
-                        <input 
-                            type="password" 
-                            id="confirmarSenha" 
-                            className="w-full px-4 py-2 border rounded-t-md border-b-2 outline-1"
-                            placeholder="Confirme sua senha" 
-                            value={confirmarSenha}
-                            onChange={(e) => setConfirmarSenha(e.target.value)}
-                            required 
-                        />
-                    </div>
+                    <InputField label="Confirmar senha" type="password" id="senha" placeholder="Confirme sua senha" value={senha} onChange={(e) => setConfirmarSenha(e.target.value)} required />
 
                     <button type="submit" className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Cadastrar</button>
 
