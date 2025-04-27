@@ -13,7 +13,7 @@ function Login() {
         mutationFn: () => login(email, senha),
         onSuccess: (data)  => {
             console.log("Login bem-sucedido", data);
-            // salvar o token, redirecionar, etc
+            // falta adicionar o token, redirecionar...
         }, 
         onError: (error: AxiosError) => {
             console.error("Erro ao fazer login", error.response?.data || error.message)

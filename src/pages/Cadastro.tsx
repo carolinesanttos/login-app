@@ -17,7 +17,7 @@ function Cadastro() {
     const navigate = useNavigate();
 
     const mutation = useMutation ({
-        mutationFn: () => cadastrarUsuario({nome, cpf, email, senha, confirmarSenha}),
+        mutationFn: () => cadastrarUsuario({nome, cpf, email, senha}),
         onSuccess: () => {
             alert("Cadastro realizado com sucesso!");
             navigate("/login");
@@ -55,7 +55,7 @@ function Cadastro() {
 
                     <InputField label="Senha" type="password" id="senha" placeholder="Crie uma senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
 
-                    <InputField label="Confirmar senha" type="password" id="senha" placeholder="Confirme sua senha" value={senha} onChange={(e) => setConfirmarSenha(e.target.value)} required />
+                    <InputField label="Confirmar senha" type="password" id="confirmarSenha" placeholder="Confirme sua senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} required />
 
                     <button type="submit" className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Cadastrar</button>
 
