@@ -17,7 +17,6 @@ export const cadastrarUsuario = async (data: {
     cpf: string;
     email: string;
     senha: string;}
-    //confirmarSenha: string}
 ) => {
     const response = await axios.post(`${API_URL}/cadastro`, data);
     return response.data;
