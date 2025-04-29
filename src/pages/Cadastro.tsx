@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { cadastrarUsuario } from "../api/BaseAPI";
 import { AxiosError } from "axios";
