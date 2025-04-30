@@ -1,8 +1,8 @@
 # Tela de Login e Cadastro
 
-Este é um projeto simples desenvolvido com o objetivo de praticar HTML, CSS, TypeScript e React. 
+Esse é um projeto simples desenvolvido com objetivo de praticar HTML, CSS, TypeScript e React
 
-## 🚀 Tecnologias e Ferramentas Utilizadas
+## Ferramentas utilizadas
 
 - **Tailwind CSS** – Estilização rápida e responsiva  
 - **Flowbite** – Componentes pré-estilizados integrados ao Tailwind  
