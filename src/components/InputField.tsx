@@ -5,7 +5,6 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement>{
 }
 
 // Componente reutilizável de input
-
 function InputField({label, id, ...rest}: InputFieldProps) {
     return (
         <div className="mb-4">

@@ -35,17 +35,17 @@ function Login() {
         }
     });
 
-    // Função que será chamad ano envio do formulário
+    // Função que será chamado ano envio do formulário
     const onSubmit = (data: LoginData) => {
         mutation.mutate(data);
     }
 
     return (
         <div className="flex h-screen">
-            <div className="w-1/2 bg-cover bg-bottom h-auto bg-[url('/src/assets/foto-login-cadastro.png')]"></div>
+            <div className="w-1/2 bg-cover bg-center bg-[url('/src/assets/foto-login-cadastro.png')]"></div>
 
             <div className="w-1/2 flex items-center justify-center bg-white">
-                {/* handleSubmit para trata o envio */}
+                {/* handleSubmit para tratar o envio */}
                 <form onSubmit={handleSubmit(onSubmit)} className="p-10 rounded-2xl w-full max-w-md">
                     <div className="w-full h-20 bg-cover bg-center bg-[url('/src/assets/logo-img.jpeg')] mb-8"></div>
 
@@ -66,6 +66,7 @@ function Login() {
 
                     <button type="submit" className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Entrar</button>
 
+                    {/*Âncora (link de navegação) para mudar de rota sem recarregar a página*/}
                     <Link to="/cadastro" className="block text-center w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 mt-1 transition">
                         Registra-se
                     </Link>

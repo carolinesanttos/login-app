@@ -9,10 +9,10 @@ import { useForm } from "react-hook-form";
 
 const cadastroSchema = z.object({
     nome: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
-  cpf: z.string().min(11, "CPF inválido"),
-  email: z.string().email("E-mail inválido"),
-  senha: z.string().min(6, "Senha deve ter pelo menos 4 caracteres"),
-  confirmarSenha: z.string().min(6, "Confirmação de senha deve ter pelo menos 4 caracteres"),
+    cpf: z.string().min(11, "CPF inválido"),
+    email: z.string().email("E-mail inválido"),
+    senha: z.string().min(6, "Senha deve ter pelo menos 4 caracteres"),
+    confirmarSenha: z.string().min(6, "Confirmação de senha deve ter pelo menos 4 caracteres"),
 }).refine((data) => data.senha === data.confirmarSenha, {
     message: "As senhas precisam ser iguais!",
     path: ["confirmarSenha"],
@@ -50,8 +50,8 @@ function Cadastro() {
       };
 
     return (
-        <div className="flex w-screen">
-            <div className="w-1/2 bg-cover bg-bottom h-auto bg-[url('/src/assets/foto-login-cadastro.png')]"></div>
+        <div className="flex h-screen">
+            <div className="w-1/2 bg-cover bg-center bg-[url('/src/assets/foto-login-cadastro.png')]"></div>
 
             <div className="w-1/2 flex items-center justify-center bg-white">
                 <form onSubmit={handleSubmit(onSubmit)} className="p-10 rounded-2xl w-full max-w-md">
