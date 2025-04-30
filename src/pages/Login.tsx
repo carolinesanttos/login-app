@@ -27,7 +27,7 @@ function Login() {
     const mutation = useMutation ({
         mutationFn: (data: LoginData) => login(data.email, data.senha), //Função que será chamada
         onSuccess: (data)  => {
-            console.log("Login bem-sucedido", data);
+            alert("Login bem-sucedido");
             // falta adicionar o token, redirecionar...
         }, 
         onError: (error: AxiosError) => {
